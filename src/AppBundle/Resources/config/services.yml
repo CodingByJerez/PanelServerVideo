@@ -1,0 +1,13 @@
+services:
+#    cron.example:
+#        class: CronBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    bytesInGo:
+        class: AppBundle\Twig\Extension\BytesInGoExtension
+        tags:
+          - { name: twig.extension }
+    pourcentage:
+        class: AppBundle\Twig\Extension\PourcentageExtension
+        tags:
+          - { name: twig.extension }
+

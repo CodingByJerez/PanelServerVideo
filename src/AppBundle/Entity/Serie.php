@@ -1,0 +1,435 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: CodingByJerez
+ * Url: http://coding.by.jerez.me
+ * Github: https://github.com/CodingByJerez
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Serie
+ *
+ * @ORM\Table(name="serie")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SerieRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ *     fields={"themoviedb", "saison", "episode"},
+ *     message="L'episode existe deja ou la saison et deja complete")
+ */
+class Serie
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="themoviedb", type="integer")
+     */
+    private $themoviedb;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="saison", type="integer")
+     */
+    private $saison;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="episode", type="integer", nullable=true)
+     */
+    private $episode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre_original", type="string", length=255)
+     */
+    private $titreOriginal;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="production_date", type="datetime")
+     */
+    private $productionDate;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     */
+    private $path;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="error", type="string", length=255, nullable=true)
+     */
+    private $error;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="execution", type="boolean")
+     */
+    private $execution;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="download", type="boolean")
+     */
+    private $download;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_datetime", type="datetime")
+     */
+    private $createdDatetime;
+
+
+    public function __construct()
+    {
+        $this->execution = false;
+        $this->download = false;
+    }
+
+
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set themoviedb.
+     *
+     * @param int $themoviedb
+     *
+     * @return Serie
+     */
+    public function setThemoviedb($themoviedb)
+    {
+        $this->themoviedb = $themoviedb;
+
+        return $this;
+    }
+
+    /**
+     * Get themoviedb.
+     *
+     * @return int
+     */
+    public function getThemoviedb()
+    {
+        return $this->themoviedb;
+    }
+
+    /**
+     * Set saison.
+     *
+     * @param int $saison
+     *
+     * @return Serie
+     */
+    public function setSaison($saison)
+    {
+        $this->saison = $saison;
+
+        return $this;
+    }
+
+    /**
+     * Get saison.
+     *
+     * @return int
+     */
+    public function getSaison()
+    {
+        return $this->saison;
+    }
+
+    /**
+     * Set episode.
+     *
+     * @param int|null $episode
+     *
+     * @return Serie
+     */
+    public function setEpisode($episode = null)
+    {
+        $this->episode = $episode;
+
+        return $this;
+    }
+
+    /**
+     * Get episode.
+     *
+     * @return int|null
+     */
+    public function getEpisode()
+    {
+        return $this->episode;
+    }
+
+    /**
+     * Set Titre.
+     *
+     * @param string $titre
+     *
+     * @return Serie
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get Titre.
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set titreOriginal.
+     *
+     * @param string $titreOriginal
+     *
+     * @return Serie
+     */
+    public function setTitreOriginal($titreOriginal)
+    {
+        $this->titreOriginal = $titreOriginal;
+
+        return $this;
+    }
+
+    /**
+     * Get titreOriginal.
+     *
+     * @return string
+     */
+    public function getTitreOriginal()
+    {
+        return $this->titreOriginal;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getProductionDate(): \DateTime
+    {
+        return $this->productionDate;
+    }
+
+    /**
+     * @param \DateTime $productionDate
+     * @return $this
+     */
+    public function setProductionDate(\DateTime $productionDate)
+    {
+        $this->productionDate = $productionDate;
+
+        return $this;
+
+    }
+
+    /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return Serie
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set path.
+     *
+     * @param string $path
+     *
+     * @return Serie
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path.
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set error.
+     *
+     * @param $error
+     * @return Serie
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+
+    /**
+     * Get error.
+     *
+     * @return array
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * Set execution.
+     *
+     * @param bool $execution
+     *
+     * @return Serie
+     */
+    public function setExecution($execution)
+    {
+        $this->execution = $execution;
+
+        return $this;
+    }
+
+    /**
+     * Get execution.
+     *
+     * @return bool
+     */
+    public function getExecution()
+    {
+        return $this->execution;
+    }
+
+    /**
+     * Set download.
+     *
+     * @param bool $download
+     *
+     * @return Serie
+     */
+    public function setDownload($download)
+    {
+        $this->download = $download;
+
+        return $this;
+    }
+
+    /**
+     * Get download.
+     *
+     * @return bool
+     */
+    public function getDownload()
+    {
+        return $this->download;
+    }
+
+    /**
+     * Set createdDatetime.
+     *
+     * @param \DateTime $createdDatetime
+     *
+     * @return Serie
+     */
+    public function setCreatedDatetime($createdDatetime)
+    {
+        $this->createdDatetime = $createdDatetime;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDatetime.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDatetime()
+    {
+        return $this->createdDatetime;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersistSetRegistrationDate()
+    {
+        $this->createdDatetime = new \DateTime();
+    }
+
+
+
+}

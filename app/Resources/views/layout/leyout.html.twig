@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mailru-domain" content="1ESqO8unS6s0tp2g" />
+        <link href="{{ asset('libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('fonts/fontawesome/css/all.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    </head>
+
+
+    {% if block('bodyClass') is defined %}
+        <body class="{{ block('bodyClass')|raw }}" data-page="{{ block('bodyClass')|raw }}">
+    {% else %}
+        <body class="" data-page="">
+    {% endif %}
+
+
+
+
+    <!-- Start Header -->
+    {% include ':modulesUsed:header.html.twig' %}
+    <!-- End Header -->
+
+
+
+
+    <div class="container fill">
+
+
+
+      <!--  <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:history.go(-1)">Retour</a></li>
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Savons</li>
+            </ol>
+        </nav> -->
+
+
+        <div class="main" role="main">
+
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+
+            {% block body %}{% endblock %}
+
+        </div>
+
+    </div>
+
+
+    <footer class="footer"></footer>
+
+    {% if block('dataJson') is defined %}
+        <input id="init-data" type="hidden" value="{{ block('dataJson') }}">
+    {% endif %}
+
+
+    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="{{ asset('libs/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script src="{{ asset('src/main.min.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+
+
+    </body>
+</html>
+
+
+
+
+
+
+

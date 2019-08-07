@@ -1,0 +1,58 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ ('header.nav.titre'|trans)|upper }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link{% if app.request.get('_route') == 'index' %} active{% endif %}" href="{{ path('index') }}">{{ 'header.nav.index'|trans }}</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle{% if app.request.get('_route') in ['filmIndex', 'filmSearch', 'filmAdd', 'filmList'] %} active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ 'header.nav.film.default'|trans }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('filmSearch') }}"><strong>{{ 'header.nav.film.add'|trans }}</strong></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('filmList') }}">{{ 'header.nav.film.list'|trans }}</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle{% if app.request.get('_route') in ['serieIndex', 'serieSearch', 'serieAdd'] %} active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ 'header.nav.series.default'|trans }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('serieSearch') }}"><strong>{{ 'header.nav.series.add'|trans }}</strong></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('serieList') }}">{{ 'header.nav.series.list'|trans }}</a>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle{% if app.request.get('_route') in ['serieIndex', 'serieSearch', 'serieAdd'] %} active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cogs"></i><!--{{ 'header.nav.setting.default'|trans }}-->
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('serieSearch') }}">{{ 'header.nav.series.add'|trans }}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">{{ 'header.nav.series.add'|trans }}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </nav>
+
+</header>

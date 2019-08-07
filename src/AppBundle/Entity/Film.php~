@@ -1,0 +1,370 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: CodingByJerez
+ * Url: http://coding.by.jerez.me
+ * Github: https://github.com/CodingByJerez
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Film
+ *
+ * @ORM\Table(name="film")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FilmRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Film
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="themoviedb", type="integer", unique=true)
+     */
+    private $themoviedb;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre_original", type="string", length=255)
+     */
+    private $titreOriginal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     */
+    private $path;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="production_date", type="date", length=255)
+     */
+    private $productionDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="error", type="string", length=255, nullable=true)
+     */
+    private $error;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="execution", type="boolean")
+     */
+    private $execution;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="download", type="boolean")
+     */
+    private $download;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_datetime", type="datetime")
+     */
+    private $createdDatetime;
+
+
+
+
+    public function __construct()
+    {
+        $this->execution = false;
+        $this->download = false;
+    }
+
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre.
+     *
+     * @param string $titre
+     *
+     * @return Film
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre.
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set themoviedb.
+     *
+     * @param int $themoviedb
+     *
+     * @return Film
+     */
+    public function setThemoviedb($themoviedb)
+    {
+        $this->themoviedb = $themoviedb;
+
+        return $this;
+    }
+
+    /**
+     * Get themoviedb.
+     *
+     * @return int
+     */
+    public function getThemoviedb()
+    {
+        return $this->themoviedb;
+    }
+
+    /**
+     * Set titreOriginal.
+     *
+     * @param string $titreOriginal
+     *
+     * @return Film
+     */
+    public function setTitreOriginal($titreOriginal)
+    {
+        $this->titreOriginal = $titreOriginal;
+
+        return $this;
+    }
+
+    /**
+     * Get titreOriginal.
+     *
+     * @return string
+     */
+    public function getTitreOriginal()
+    {
+        return $this->titreOriginal;
+    }
+
+    /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return Film
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set path.
+     *
+     * @param string $path
+     *
+     * @return Film
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path.
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set productionDate.
+     *
+     * @param string $productionDate
+     *
+     * @return Film
+     */
+    public function setProductionDate($productionDate)
+    {
+        $this->productionDate = $productionDate;
+
+        return $this;
+    }
+
+    /**
+     * Get productionDate.
+     *
+     * @return string
+     */
+    public function getProductionDate()
+    {
+        return $this->productionDate;
+    }
+
+    /**
+     * Set error.
+     *
+     * @param string $error
+     *
+     * @return Film
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * Get error.
+     *
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * Set execution.
+     *
+     * @param bool $execution
+     *
+     * @return Film
+     */
+    public function setExecution($execution)
+    {
+        $this->execution = $execution;
+
+        return $this;
+    }
+
+    /**
+     * Get execution.
+     *
+     * @return bool
+     */
+    public function getExecution()
+    {
+        return $this->execution;
+    }
+
+    /**
+     * Set download.
+     *
+     * @param bool $download
+     *
+     * @return Film
+     */
+    public function setDownload($download)
+    {
+        $this->download = $download;
+
+        return $this;
+    }
+
+    /**
+     * Get download.
+     *
+     * @return bool
+     */
+    public function getDownload()
+    {
+        return $this->download;
+    }
+
+    /**
+     * Set createdDatetime.
+     *
+     * @param \DateTime $createdDatetime
+     *
+     * @return Film
+     */
+    public function setCreatedDatetime($createdDatetime)
+    {
+        $this->createdDatetime = $createdDatetime;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDatetime.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDatetime()
+    {
+        return $this->createdDatetime;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersistSetRegistrationDate()
+    {
+        $this->createdDatetime = new \DateTime();
+    }
+
+}

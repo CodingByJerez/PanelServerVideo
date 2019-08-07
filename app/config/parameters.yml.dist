@@ -1,0 +1,44 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: '%kernel.project_dir%/var/data/data.sqlite'
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ~
+    mailer_password: ~
+
+    themoviedb_key: ~
+
+    locale_default: ~
+
+    unfichier_key: ~
+
+    tmp_dir: ~
+
+    film_dir: ~
+    film_limit_download: 2
+
+    serie_dir: ~
+    serie_limit_download: 2
+
+    server_auto_off: true
+    server_time_off: 3600
+
+    emby_ip: 127.0.0.1
+    emby_port: 8096
+    emby_key: ~
+    emby_name_key: panel_video
+
+
+
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt

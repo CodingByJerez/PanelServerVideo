@@ -1,0 +1,18 @@
+home_fallback:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /{_locale}/film/list
+        _locale: '%locale_default%'
+        permanent: true
+
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+    prefix:   /{_locale}
+    #requirements:
+        #_locale: '%app_locale%' # depandance config.yml
+    defaults:
+        _locale: '%locale%'
+        #path: fr

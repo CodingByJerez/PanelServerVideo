@@ -1,0 +1,53 @@
+{% extends "layout/leyout.html.twig" %}
+
+{% block bodyClass %}{% endblock %}
+{% block dataJson %}{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center mt-5">{{ 'serie.add.titre'|trans }}</h2>
+
+    <!-- start list saison -->
+    <div class="mb-3">
+        {% for saison in saisons %}
+            <a class="btn btn-{{ (app.request.query.get("saison") == saison.numeroSaison) ? "info" : "light" }}" href="{{ path('serieAdd', {'themoviedb_id': app.request.attributes.get('_route_params')['themoviedb_id'], 'saison': saison.numeroSaison}) }}">{{ 'serie.add.saison'|trans({'%saison%': saison.numeroSaison}) }}</a>
+        {% endfor %}
+    </div>
+    <!-- end list saison -->
+
+    {% if app.request.query.get("saison") %}
+
+        {% set saison = app.request.query.get("saison") %}
+
+        {% for i in 1..saisons[saison].nombreEpisode %}
+            <form method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{{ 'serie.add.episode'|trans({'%episode%': i}) }}</span>
+                    </div>
+
+                    <input type="url" name="url" class="form-control" placeholder="{% if episodes[i] is not defined %}{{ 'serie.add.form.url'|trans }}{% else %}{{ episodes[i].url }}{% endif %}" {% if episodes[i] is defined %}disabled{% endif %}>
+                    <input type="hidden" name="episode" value="{{ i }}">
+                    <div class="input-group-append">
+
+                        {% if episodes[i] is not defined %}
+                            <button type="submit" class="btn btn-outline-secondary">{{ 'serie.add.form.send'|trans }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only"></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{{ path('serieDelete', {'id': episodes[i].id}) }}">{{ 'serie.add.delete'|trans }}</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

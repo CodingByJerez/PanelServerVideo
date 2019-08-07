@@ -1,0 +1,132 @@
+pagination:
+    precedent: Précédent
+    suivant: Suivant
+
+header:
+    nav:
+        titre: Emby
+        index: Acceuil
+        film:
+            default: Film
+            add: Ajouter un film
+            list: liste des film
+
+
+        series:
+            default: Serie
+            add: Ajouter un episode
+            list: liste des series
+
+        setting:
+            default: Reglage
+
+
+
+
+film:
+    error:
+        dir_drive: Le chemain du disque pour les video existe pas
+    notification:
+        adding: Le film a bien etes ajouter a la base de donné il va etre telecharger prochenement
+        isset: Le film est deja present sur le serveur
+        change_link_sucsses: Le Lien de telechargement a bien etes changer
+        change_link_empty: Vous avez oubliez de spesifier le nouveau lien de telecargement
+        delete: Le film a bien etes suprimer
+    titre: Ajouter Un Film
+
+
+    list:
+        titre: Liste des Films
+        drive:
+            total_size: "Total disque: %go% Go"
+        status:
+            th: Status
+            titre: Titre
+            date: Date d'ajout
+            delete: Suprimer
+            error:
+                label: Erreur
+                popover_title: Une erreur c'est produit
+                modal_lien:
+                    titre: Nouveau lien de telechargement
+                    button_undo: Annuler
+                    button_submit: Sauvgardé
+
+        legande:
+            error:
+            dowload:
+            valide:
+            wating:
+
+
+
+    search:
+        form:
+            titre: Nom Du Film
+            date: Année Du Film
+            search: Recherche Les info du Film
+
+        result_empty: Pas de Résultat
+        result_selectioner: Selectioner
+    add:
+        form:
+            url: Url de la video (uniquement de chez 1fichier)
+            send: envoyer
+
+
+
+
+serie:
+    error:
+        dir_drive: Le chemain du disque pour les video existe pas
+    notification:
+        adding: L'episode a bien etes ajouter a la base de donné il va etre telecharger prochenement
+        change_link_sucsses: Le Lien de telechargement a bien etes changer
+        change_link_empty: Vous avez oubliez de spesifier le nouveau lien de telecargement
+        delete: L'episode a bien etes suprimer
+
+    list:
+        titre: Liste des Serie
+        status:
+            th: Status
+            titre: Titre
+            saison: Saison
+            episode: Episode
+            date: Date d'ajout
+            delete: Suprimer
+            error:
+                label: Erreur
+                popover_title: Une erreur c'est produit
+                modal_lien:
+                    titre: Nouveau lien de telechargement
+                    button_undo: Annuler
+                    button_submit: Sauvgardé
+        legande:
+            error:
+            dowload:
+            valide:
+            wating:
+
+
+
+
+    search:
+        titre: Recherche Une Serie
+        form:
+            titre: Nom De la Serie
+            saison: Saison
+            episode: Episode
+            search: Recherche
+        result:
+            empty: Pas de Résultat
+            selectioner: Selectioner
+    add:
+        titre: Ajouter un episode
+        saison: Saison %saison%
+        episode: Episode %episode%
+        delete: Supprimer
+        form:
+            url: Url de l'episode (uniquement de chez 1fichier)
+            send: envoyer
+
+

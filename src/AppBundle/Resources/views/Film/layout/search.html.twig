@@ -1,0 +1,87 @@
+{% extends "layout/leyout.html.twig" %}
+
+{% block bodyClass %}{% endblock %}
+{% block dataJson %}{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center mt-5">{{ 'film.titre'|trans }}</h2>
+
+    <form method="get">
+
+        <div class="form-row mt-4 mb-2">
+            <div class="col-8">
+                <input name="titre" type="text" class="form-control" placeholder="{{ 'film.search.form.titre'|trans }}" value="{{ app.request.query.get("titre") }}" required>
+            </div>
+            <div class="col-4">
+                <input name="date" type="number" class="form-control" placeholder="{{ 'film.search.form.date'|trans }}" value="{{ app.request.query.get("date") }}">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">{{ 'film.search.form.search'|trans }}</button>
+
+    </form>
+
+    {% if result is not empty %}
+
+    <table class="table table-borderless mt-5" style="border: 1px solid #dee2e6;">
+        <tbody>
+
+        {% if result.themoviedb.total_results == 0 %}
+
+            <tr>
+                <td colspan="2">
+                    <div class="text-center">{{ 'film.search.result_empty'|trans }}</div>
+                </td>
+            </tr>
+
+        {% else %}
+
+            {% for film in result.themoviedb.results %}
+                <tr>
+                    <td><img height="150" src="{{ film.poster_path }}"></td>
+                    <td>
+                        <strong class="mb-2" style="font-size: 20px;">{{ film.title }}</strong>
+                        <p style="font-size: 12px;">{{ film.overview }}</p>
+                    </td>
+                </tr>
+                <tr style="border-bottom: 1px solid #dee2e6;">
+                    <td colspan="2">
+                        <a href="{{ path('filmAdd', {'themoviedb_id': film.id}) }}" class="btn btn-secondary btn-sm mb-2 btn-block">{{ 'film.search.result_selectioner'|trans }}</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+
+    {% if result.themoviedb.total_results > 0 %}
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled{{ result.page != 1 ?: " disabled"}}">
+                    <a href="{{ path('filmSearch' ,{'titre': app.request.query.get("titre"), 'date': app.request.query.get("date"), 'page': result.page -1}) }}" class="page-link" {{ result.page != 1 ?: " aria-disabled=\"true\""}}>Précédent{{ 'pagination.precedent'|trans }}</a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">{{ (result.page) }}</a>
+                </li>
+                <li class="page-item{{ result.page != result.themoviedb.total_pages ?: " disabled"}}">
+                    <a  href="{{ path('filmSearch' ,{'titre': app.request.query.get("titre"), 'date': app.request.query.get("date"), 'page': result.page + 1}) }}" class="page-link" {{ result.page != result.themoviedb.total_pages ?: "  aria-disabled=\"true\"" }}>{{ 'pagination.suivant'|trans }}</a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+
+
+
+
+        {% endif %}
+
+
+
+
+
+
+
+{% endblock %}
